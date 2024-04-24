@@ -4,7 +4,23 @@ namespace Repository;
     public class DeveloperRepo
     {
         private List<Developer> _developers = new List<Developer>();
-        private static int _nextDeveloperId = 1;
+        private static int _nextDeveloperId = 1; 
+
+        public DeveloperRepo() 
+        {
+            SeedDevelopers();
+            
+        } 
+
+        private void SeedDevelopers() 
+        {
+            AddDeveloper(new Developer{Name = "Rufus Don", HasPluralsightAccess = true}) ;
+            AddDeveloper(new Developer{Name = "Jak Williams", HasPluralsightAccess = false}) ;
+            AddDeveloper(new Developer{Name = "Rose Martin", HasPluralsightAccess = true}) ;
+            AddDeveloper(new Developer{Name = "Juilet Colt", HasPluralsightAccess = false }) ;
+        }
+
+
 
         // Create
         public void AddDeveloper(Developer developer)

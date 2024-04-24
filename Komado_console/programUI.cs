@@ -114,8 +114,9 @@ namespace KomodoInsuranceConsoleApp
             else
             {
                 Console.WriteLine("Invalid input. Please enter true or false.");
-            }
-        }
+            } 
+        } 
+        
         //Delete 
         private void RemoveDeveloper()
         {
@@ -289,5 +290,7 @@ namespace KomodoInsuranceConsoleApp
                 Console.WriteLine();
             }
         }
-    }
+    } 
+
+
 }

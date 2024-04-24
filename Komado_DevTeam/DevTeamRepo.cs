@@ -3,7 +3,18 @@ namespace Repository
         public class DevTeamRepo
     {
         private List<DevTeam> _teams = new List<DevTeam>();
-        private static int _nextTeamId = 1;
+        private static int _nextTeamId = 1; 
+
+        public DevTeamRepo () 
+        {
+            SeedTeams () ;
+        } 
+
+        private void SeedTeams() 
+        {
+            AddTeam(new DevTeam{TeamName = "Male training", TeamMembers = new List<Developer>()}) ;
+            AddTeam(new DevTeam{TeamName = "Female training", TeamMembers = new List<Developer>()}) ;
+        }
 
         // Create
         public void AddTeam(DevTeam team)
