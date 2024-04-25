@@ -122,6 +122,16 @@ namespace KomodoInsuranceConsoleApp
         }
 
 
+        //Read 
+        private void ListAllDevelopers()
+        {
+            var developers = developerRepo.GetAllDevelopers();
+            Console.WriteLine("List of Developers:");
+            foreach (var developer in developers)
+            {
+                Console.WriteLine($"ID: {developer.DeveloperId}, Name: {developer.Name}, Pluralsight Access: {developer.HasPluralsightAccess}");
+            }
+        }
 
 
         //Delete 
@@ -136,16 +146,6 @@ namespace KomodoInsuranceConsoleApp
             else
             {
                 Console.WriteLine("Invalid input. Please enter a valid Developer ID.");
-            }
-        }
-        //Read 
-        private void ListAllDevelopers()
-        {
-            var developers = developerRepo.GetAllDevelopers();
-            Console.WriteLine("List of Developers:");
-            foreach (var developer in developers)
-            {
-                Console.WriteLine($"ID: {developer.DeveloperId}, Name: {developer.Name}, Pluralsight Access: {developer.HasPluralsightAccess}");
             }
         }
         //DevTeams 
@@ -257,6 +257,22 @@ namespace KomodoInsuranceConsoleApp
                 Console.WriteLine("Invalid input. Please enter a valid Team ID.");
             }
         }
+        //Read
+        private void ListAllTeams()
+        {
+            var teams = devTeamRepo.GetAllTeams();
+            Console.WriteLine("List of Teams:");
+            foreach (var team in teams)
+            {
+                Console.WriteLine($"ID: {team.TeamId}, Name: {team.TeamName}");
+                Console.WriteLine("Members:");
+                foreach (var member in team.TeamMembers)
+                {
+                    Console.WriteLine($"- ID: {member.DeveloperId}, Name: {member.Name}");
+                }
+                Console.WriteLine();
+            }
+        }
 
         //Delete 
         private void RemoveDeveloperFromTeam()
@@ -281,22 +297,8 @@ namespace KomodoInsuranceConsoleApp
             }
         }
 
-        //Read 
-        private void ListAllTeams()
-        {
-            var teams = devTeamRepo.GetAllTeams();
-            Console.WriteLine("List of Teams:");
-            foreach (var team in teams)
-            {
-                Console.WriteLine($"ID: {team.TeamId}, Name: {team.TeamName}");
-                Console.WriteLine("Members:");
-                foreach (var member in team.TeamMembers)
-                {
-                    Console.WriteLine($"- ID: {member.DeveloperId}, Name: {member.Name}");
-                }
-                Console.WriteLine();
-            }
-        }
+            
+       //Seed content teams 
         private void AddSeedDevToTeams()
         {
             foreach (var dev in developerRepo.GetAllDevelopers())
