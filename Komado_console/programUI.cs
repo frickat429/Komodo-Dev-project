@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Repository;
 
 namespace KomodoInsuranceConsoleApp
@@ -15,8 +16,10 @@ namespace KomodoInsuranceConsoleApp
             devTeamRepo = new DevTeamRepo();
         }
 
+
         public void Run()
         {
+            AddSeedDevToTeams();
             bool continueManaging = true;
 
             while (continueManaging)
@@ -48,10 +51,11 @@ namespace KomodoInsuranceConsoleApp
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input. Please enter a number."); 
-                    System.Console.Clear() ;
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                    System.Console.Clear();
                 }
             }
+
         }
         //Developers menu 
         private void ManageDevelopers()
@@ -114,9 +118,12 @@ namespace KomodoInsuranceConsoleApp
             else
             {
                 Console.WriteLine("Invalid input. Please enter true or false.");
-            } 
-        } 
-        
+            }
+        }
+
+
+
+
         //Delete 
         private void RemoveDeveloper()
         {
@@ -251,7 +258,7 @@ namespace KomodoInsuranceConsoleApp
             }
         }
 
-            //Delete 
+        //Delete 
         private void RemoveDeveloperFromTeam()
         {
             Console.Write("Enter Team ID: ");
@@ -290,7 +297,21 @@ namespace KomodoInsuranceConsoleApp
                 Console.WriteLine();
             }
         }
-    } 
-
+        private void AddSeedDevToTeams()
+        {
+            foreach (var dev in developerRepo.GetAllDevelopers())
+            {
+                if (dev.Name == "Rufus Don" || dev.Name == "Jak Williams")
+                {
+                    devTeamRepo.GetTeamById(1).TeamMembers.Add(dev);
+                }
+                else
+                {
+                    devTeamRepo.GetTeamById(2).TeamMembers.Add(dev);
+                }
+            }
+        }
+    }
 
 }
+
